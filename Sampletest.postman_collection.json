@@ -143,7 +143,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://rahulshettyacademy.com/maps/api/place/get/json?place_id=b582c3f7fb9c59d9bbd70f7033ca0211&key=qaclick123",
+					"raw": "https://rahulshettyacademy.com/maps/api/place/get/json?place_id=288a3af4caddc03143e8c1470c230f83&key=qaclick123",
 					"protocol": "https",
 					"host": [
 						"rahulshettyacademy",
@@ -159,7 +159,7 @@
 					"query": [
 						{
 							"key": "place_id",
-							"value": "b582c3f7fb9c59d9bbd70f7033ca0211"
+							"value": "288a3af4caddc03143e8c1470c230f83"
 						},
 						{
 							"key": "key",
@@ -200,7 +200,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"place_id\":\"b582c3f7fb9c59d9bbd70f7033ca0211\",\r\n\"address\":\"70 Summer walk, USA\",\r\n\"key\":\"qaclick123\"\r\n}\r\n",
+					"raw": "{\r\n\"place_id\":\"288a3af4caddc03143e8c1470c230f83\",\r\n\"address\":\"70 Summer walk, USA\",\r\n\"key\":\"qaclick123\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -255,7 +255,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"place_id\":\"b582c3f7fb9c59d9bbd70f7033ca0211\"\r\n}\r\n",
+					"raw": "{\r\n    \"place_id\":\"288a3af4caddc03143e8c1470c230f83\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
