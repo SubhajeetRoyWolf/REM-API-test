@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "e2b2f6f4-77d4-497f-b72a-02b30c44321e",
+		"name": "Sampletest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46957082",
+		"_collection_link": "https://flight-cosmonaut-5330658-9446679.postman.co/workspace/subhajeet-roy's-Workspace~e9ec4e31-724b-4713-8340-c6b827ffe031/collection/46957082-e2b2f6f4-77d4-497f-b72a-02b30c44321e?action=share&source=collection_link&creator=46957082"
+	},
+	"item": [
+		{
+			"name": "PostPlace",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check response message\r",
+							"pm.test(\"Check 'status' is OK\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"OK\");\r",
+							"});\r",
+							"\r",
+							"// Save place_id for chaining\r",
+							"const jsonData = pm.response.json();\r",
+							"if (jsonData.place_id) {\r",
+							"    pm.environment.set(\"place_id\", jsonData.place_id);\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"location\": {\r\n    \"lat\": -38.383494,\r\n    \"lng\": 33.427362\r\n  },\r\n  \"accuracy\": 50,\r\n  \"name\": \"Frontline house\",\r\n  \"phone_number\": \"(+91) 983 893 3937\",\r\n  \"address\": \"29, side layout, cohen 09\",\r\n  \"types\": [\r\n    \"shoe park\",\r\n    \"shop\"\r\n  ],\r\n  \"website\": \"http://google.com\",\r\n  \"language\": \"French-IN\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/add/json?key =qaclick123",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"add",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key ",
+							"value": "qaclick123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Places",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"// ✅ Validate Status Code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ✅ Validate Name\r",
+							"pm.test(\"Place name is 'Frontline house'\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Frontline house\");\r",
+							"});\r",
+							"\r",
+							"// ✅ Validate Phone Number\r",
+							"pm.test(\"Phone number is correct\", function () {\r",
+							"    pm.expect(jsonData.phone_number).to.eql(\"(+91) 983 893 3937\");\r",
+							"});\r",
+							"\r",
+							"// ✅ Validate Address\r",
+							"pm.test(\"Address is correct\", function () {\r",
+							"    pm.expect(jsonData.address).to.eql(\"29, side layout, cohen 09\");\r",
+							"});\r",
+							"\r",
+							"// ✅ Validate Location\r",
+							"pm.test(\"Latitude and Longitude are correct\", function () {\r",
+							"    pm.expect(jsonData.location.latitude).to.eql(\"-38.383494\");\r",
+							"    pm.expect(jsonData.location.longitude).to.eql(\"33.427362\");\r",
+							"});\r",
+							"\r",
+							"// ✅ Validate Website\r",
+							"pm.test(\"Website is correct\", function () {\r",
+							"    pm.expect(jsonData.website).to.eql(\"http://google.com\");\r",
+							"});\r",
+							"\r",
+							"// ✅ Validate Language\r",
+							"pm.test(\"Language is correct\", function () {\r",
+							"    pm.expect(jsonData.language).to.eql(\"French-IN\");\r",
+							"});\r",
+							"\r",
+							"// ✅ Validate Types\r",
+							"pm.test(\"Types are correct\", function () {\r",
+							"    pm.expect(jsonData.types).to.eql(\"shoe park,shop\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/get/json?place_id=b582c3f7fb9c59d9bbd70f7033ca0211&key=qaclick123",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"get",
+						"json"
+					],
+					"query": [
+						{
+							"key": "place_id",
+							"value": "b582c3f7fb9c59d9bbd70f7033ca0211"
+						},
+						{
+							"key": "key",
+							"value": "qaclick123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePlace",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"// ✅ Validate status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ✅ Validate message\r",
+							"pm.test(\"Update message is correct\", function () {\r",
+							"    pm.expect(jsonData.msg).to.eql(\"Address successfully updated\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"place_id\":\"b582c3f7fb9c59d9bbd70f7033ca0211\",\r\n\"address\":\"70 Summer walk, USA\",\r\n\"key\":\"qaclick123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/update/json",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"update",
+						"json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePlace",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"// ✅ Check for successful status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ✅ Check for success status in response body\r",
+							"pm.test(\"Delete status is OK\", function () {\r",
+							"    pm.expect(jsonData.status).to.eql(\"OK\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"place_id\":\"b582c3f7fb9c59d9bbd70f7033ca0211\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/delete/json",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"delete",
+						"json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Negative DeletePlace",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"// ✅ Check if status code is 404 (or as returned by server)\r",
+							"pm.test(\"Status code is 404 (Not Found)\", function () {\r",
+							"    pm.response.to.have.status(404); // Use 400/404 based on actual API response\r",
+							"});\r",
+							"\r",
+							"// ✅ Check for the expected failure message\r",
+							"pm.test(\"Delete failure message is correct\", function () {\r",
+							"    pm.expect(jsonData.msg).to.eql(\"Delete operation failed, looks like the data doesn't exists\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"place_id\":\"a9a932a5dd85ac30bf9b4cfbe952ea91\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/delete/json",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"delete",
+						"json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
